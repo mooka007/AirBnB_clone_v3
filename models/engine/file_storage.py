@@ -35,28 +35,29 @@ class FileStorage:
         return self.__objects
 
     def get(self, cls, id):
-        """
-        gets specific object
-        :param cls: class
-        :param id: id of instance
-        :return: object or None
-        """
-        all_class = self.all(cls)
-
-        for obj in all_class.values():
-            if id == str(obj.id):
-                return obj
-
+        """retrieves one object based on the class and it's ID"""
+        from models import storage
+        data = self.all()
+        for objs in data.values():
+            if objs.id == id:
+                return objs
         return None
 
     def count(self, cls=None):
-        """
-        count of instances
-        :param cls: class
-        :return: number of instances
-        """
-
-        return len(self.all(cls))
+        """counts the number of objects in storage"""
+        from models import storage
+        if cls:
+            count = 0
+            data = storage.all(cls).values()
+            for objs in data:
+                count += 1
+            return count
+        else:
+            count = 0
+            data = storage.all().values()
+            for objs in data:
+                count += 1
+            return count
 
     def new(self, obj):
         """sets in __objects the obj with key <obj class name>.id"""

@@ -56,27 +56,29 @@ class DBStorage:
         self.__session.add(obj)
 
     def get(self, cls, id):
-        """
-        fetches specific object
-        :param cls: class of object as string
-        :param id: id of object as string
-        :return: found object or None
-        """
-        all_class = self.all(cls)
-
-        for obj in all_class.values():
-            if id == str(obj.id):
-                return obj
-
+        """retrieves one object based on the class and it's ID"""
+        from models import storage
+        data = self.all()
+        for objs in data.values():
+            if objs.id == id:
+                return objs
         return None
 
     def count(self, cls=None):
-        """
-        count of how many instances of a class
-        :param cls: class name
-        :return: count of instances of a class
-        """
-        return len(self.all(cls))
+        """counts the number of objects in storage"""
+        from models import storage
+        if cls:
+            count = 0
+            data = storage.all(cls).values()
+            for objs in data:
+                count += 1
+            return count
+        else:
+            count = 0
+            data = storage.all().values()
+            for objs in data:
+                count += 1
+            return count
 
     def save(self):
         """commit all changes of the current database session"""
