@@ -57,7 +57,7 @@ class DBStorage:
 
     def get(self, cls, id):
         """
-        fetches specific object
+        fetchi specific object
         :param cls: class of object as string
         :param id: id of object as string
         :return: found object or None

@@ -36,7 +36,7 @@ class FileStorage:
 
     def get(self, cls, id):
         """
-        gets specific object
+        gets pecific object
         :param cls: class
         :param id: id of instance
         :return: object or None
