@@ -39,7 +39,7 @@ def user_delete(user_id):
 
 @app_views.route("/users", strict_slashes=False, methods=["POST"])
 def create_user():
-    """create a new post req"""
+    """creates a new post req"""
     data = request.get_json(force=True, silent=True)
     if not data:
         abort(400, "Not a JSON")
