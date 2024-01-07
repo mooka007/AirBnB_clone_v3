@@ -34,31 +34,6 @@ class FileStorage:
             return new_dict
         return self.__objects
 
-    def get(self, cls, id):
-        """retrieves one object based on the class and it's ID"""
-        from models import storage
-        data = self.all()
-        for objs in data.values():
-            if objs.id == id:
-                return objs
-        return None
-
-    def count(self, cls=None):
-        """counts the number of objects in storage"""
-        from models import storage
-        if cls:
-            count = 0
-            data = storage.all(cls).values()
-            for objs in data:
-                count += 1
-            return count
-        else:
-            count = 0
-            data = storage.all().values()
-            for objs in data:
-                count += 1
-            return count
-
     def new(self, obj):
         """sets in __objects the obj with key <obj class name>.id"""
         if obj is not None:
@@ -80,7 +55,7 @@ class FileStorage:
                 jo = json.load(f)
             for key in jo:
                 self.__objects[key] = classes[jo[key]["__class__"]](**jo[key])
-        except:
+        except Exception:
             pass
 
     def delete(self, obj=None):
@@ -93,3 +68,22 @@ class FileStorage:
     def close(self):
         """call reload() method for deserializing the JSON file to objects"""
         self.reload()
+
+    def get(self, cls, id):
+        """Method to return the object based on the class and its ID"""
+        if cls:
+            for value in self.__objects.values():
+                if cls == value.__class__ or cls == value.__class__.__name__:
+                    if id == value.id:
+                        return value
+        return None
+
+    def count(self, cls=None):
+        """Returns the number of objects
+        in storage matching the given class."""
+        if cls:
+            all_objs_dict = self.all(cls)
+            count = len(all_objs_dict)
+        else:
+            count = len(self.all())
+        return count
