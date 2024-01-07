@@ -154,8 +154,17 @@ EOF  all  create  destroy  help  quit  show  update
 No known bugs at this time.
 
 ## Authors
+<<<<<<< HEAD
 Rania Chikhi - [Github](https://github.com/raniachikhi)
 Mohammed yassine marzouki - [Github](https://github.com/mooka007)
+=======
+Alexa Orrico - [Github](https://github.com/alexaorrico) / [Twitter](https://twitter.com/alexa_orrico)
+Jennifer Huang - [Github](https://github.com/jhuang10123) / [Twitter](https://twitter.com/earthtojhuang)
+Second part of Airbnb: Joann Vuong
+
+Rania CHIKHI - [Github] (https://github.com/raniachikhi) / [Twitter] (https://twitter.com/ainar_hc)
+
+>>>>>>> 1ebc7ec87a6255f798d148c1a8fa8d44a2c07f5e
 
 ## License
 Public Domain. No copy write protection.
